@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.62.4",
+    "rollup-plugin-base64": "^1.0.1",
+    "typescript": "^7.0.2"
+  }
+}

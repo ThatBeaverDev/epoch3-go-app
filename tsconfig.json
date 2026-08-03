@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"rootDir": "./lib",
+		"outDir": "./build",
+
+		"strict": true,
+
+		"target": "es2022",
+		"lib": ["esnext", "DOM", "DOM.Iterable", "DOM.AsyncIterable"],
+
+		"module": "esnext",
+		"moduleResolution": "bundler",
+
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+
+		"incremental": true,
+		"tsBuildInfoFile": "./build/.tsbuildinfo",
+
+		"paths": {
+			"@/*": ["./lib/util/*"]
+		}
+	},
+	"include": ["lib", "lib/code/global.d.ts"]
+}
