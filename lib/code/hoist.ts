@@ -2,7 +2,7 @@ import { Environment } from "@/types/worker";
 import "./wasm_exec.js";
 
 export default async function* GoHoist(
-	networkPath: string,
+	wasmBuffer: Uint8Array,
 	env: Environment,
 	args: string[]
 ) {
@@ -305,18 +305,11 @@ export default async function* GoHoist(
 
 	// @ts-expect-error
 	const go = new Go();
-	go.argv = ["main.wasm", ...args];
-
-	const response = await env.network.request("get", networkPath, "blob");
-	if (!response.isOk) {
-		env.error(`Failed to load WASM module: ${response.statusText}`);
-		return `Error loading WASM: ${response.statusText}`;
-	}
-
-	const wasmBuffer = await response.response.arrayBuffer();
+	go.argv = ["app.go", ...args];
 
 	// run it
 	const result = await WebAssembly.instantiate(wasmBuffer, go.importObject);
+	// @ts-expect-error
 	await go.run(result.instance);
 
 	// put extra logs to output before exiting
